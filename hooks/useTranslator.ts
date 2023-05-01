@@ -33,7 +33,7 @@ const useTranslator = () => {
         }
     }, [inputText, debouncedTranslateText])
 
-    return { input: inputText, translateText, handleInput};
+    return { input: inputText, translatedText, handleInput};
 }
 
 export default useTranslator
