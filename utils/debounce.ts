@@ -11,7 +11,7 @@ const debounce = (func: (...args: any[]) => void, wait: number) => {
     return (...args: any[]) => {
         // later es la función que se ejecuta cuando se acaba el tiempo de espera
         const later = () => {
-            clearTimeout(timeout)
+            window.clearTimeout(timeout)
             func(...args) // es la función que se recibe como parámetro y que se ejecuta cuando se acaba el tiempo de espera
         }
 

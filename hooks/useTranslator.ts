@@ -8,7 +8,7 @@ const useTranslator = () => {
     const [translatedText, setTranslatedText] = useState<string>('');
 
     // Manejador del estado del text area
-    const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputText(event.target.value);
     }
 
@@ -33,7 +33,7 @@ const useTranslator = () => {
         }
     }, [inputText, debouncedTranslateText])
 
-    return { input: inputText, translatedText, handleInput};
+    return { input: inputText, translatedText, handleInputChange};
 }
 
 export default useTranslator

@@ -7,7 +7,7 @@ import Container from "@/components/Container";
 import useTranslator from "@/hooks/useTranslator";
 
 const Translator: React.FC = () => {
-  const { inputText, translateText, handleInputChange } = useTranslator();
+  const { inputText, translatedText, handleInputChange } = useTranslator();
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
