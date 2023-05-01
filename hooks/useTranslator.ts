@@ -35,3 +35,5 @@ const useTranslator = () => {
 
     return { input: inputText, translateText, handleInput};
 }
+
+export default useTranslator
