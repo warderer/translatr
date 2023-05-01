@@ -1,6 +1,6 @@
 // El debounce es un patrón de diseño, que pospone la ejecución de una función hasta que pase un tiempo de espera.
 
-import { clearTimeout } from "timers"
+// import { clearTimeout } from "timers" (si se usa el import da error)
 
 // Se utiliza para evitar que se hagan muchas peticiones al servidor, por ejemplo, cuando se hace scroll en una página, y se hace una petición al servidor cada vez que se hace scroll, se puede utilizar el debounce para que se haga una petición cada cierto tiempo, y no cada vez que se hace scroll.
 
@@ -11,7 +11,7 @@ const debounce = (func: (...args: any[]) => void, wait: number) => {
     return (...args: any[]) => {
         // later es la función que se ejecuta cuando se acaba el tiempo de espera
         const later = () => {
-            window.clearTimeout(timeout)
+            clearTimeout(timeout)
             func(...args) // es la función que se recibe como parámetro y que se ejecuta cuando se acaba el tiempo de espera
         }
 
