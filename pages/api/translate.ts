@@ -18,10 +18,19 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+const cache = new Map<string, string>();
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { text } = req.body;
 
     if (req.method === "POST") {
+
+        const cachedTranslation = cache.get(text);
+        // Si la traducción está en caché, la devolvemos en vez de llamar a la API
+        if (cachedTranslation) {
+            return res.status(200).json({ translatedText: cachedTranslation });
+        }
+
          try {
             const response = await openai.createChatCompletion({
                 model: GTP_MODEL,
@@ -32,6 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
             const translatedText = response.data?.choices?.[0]?.message?.content?.trim() ?? "";
 
+            cache.set(text, translatedText); // Guardamos en caché la traducción
             res.status(200).json({ translatedText });
          } catch (error) {
             console.error(error);
