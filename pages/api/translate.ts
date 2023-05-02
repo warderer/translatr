@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { Configuration, OpenAIApi } from 'openai'
 import { MAX_COUNT } from '@/utils/constants'
+import buildMessages from '@/helpers/buildMessages';
 
 // OpenAI consume 4 tokens por caracter
 const TOKEN_FACTOR = 4;
@@ -19,12 +20,12 @@ const openai = new OpenAIApi(configuration);
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { text } = req.body;
-    
+
     if (req.method === "POST") {
          try {
             const response = await openai.createChatCompletion({
                 model: GTP_MODEL,
-                messages: [{ role: "user", content: `Traduce de Español a Ingles: ${text}` }],
+                messages: buildMessages(text),
                 temperature: 0,
                 max_tokens: MAX_TOKENS,
               });
